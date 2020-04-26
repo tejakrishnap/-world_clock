@@ -8,7 +8,8 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  String time = 'loading';
+  String time = 'Loading ...';
+
   void setupWorldTime() async {
     WorldTime instance = WorldTime(location: 'Berlin', flag: 'Germany.png', url: 'Europe/Berlin');
     await instance.getTime();
@@ -17,6 +18,7 @@ class _LoadingState extends State<Loading> {
       time = instance.time;
     });
   }
+
   @override
   void initState() {
     super.initState();
