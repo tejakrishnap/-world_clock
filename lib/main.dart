@@ -4,7 +4,7 @@ import 'package:worldclock/pages/home.dart';
 import 'package:worldclock/pages/loading.dart';
 
 void main() => runApp(MaterialApp(
-  initialRoute: '/home', // initial route will be the starting screen of the app
+  initialRoute: '/', // initial route will be the starting screen of the app
   routes: {
     '/': (context) => Loading(),
     '/home': (context) => Home(),
