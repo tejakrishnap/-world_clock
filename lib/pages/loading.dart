@@ -8,15 +8,15 @@ class Loading extends StatefulWidget {
 
 class _LoadingState extends State<Loading> {
 
-  String time = 'Loading ...';
-
   void setupWorldTime() async {
     WorldTime instance = WorldTime(location: 'Berlin', flag: 'Germany.png', url: 'Europe/Berlin');
     await instance.getTime();
-    print(instance.time);
-    setState(() {
-      time = instance.time;
-    });
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      // sending required data through routing
+      'location': instance.location,
+      'flag': instance.flag,
+      'time': instance.time
+    }); // pushReplacementNamed won't keep the loading page under the home after routing
   }
 
   @override
@@ -30,7 +30,7 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(50.0),
-        child: Text(time),
+        child: Text('Loading ...'),
       ),
     );
   }
