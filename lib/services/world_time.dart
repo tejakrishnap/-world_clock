@@ -12,6 +12,28 @@ class WorldTime {
 
   WorldTime({ this.location, this.flag, this.url });
 
+  String getCurrentImage(now) {
+    String imagePath = '';
+
+    if (now.hour >= 19 && now.hour <= 24) {
+      imagePath = 'night.jpg';
+    } else if(now.hour >= 0 && now.hour < 5) {
+      imagePath = 'night.jpg';
+    } else if(now.hour >= 5 && now.hour < 7) {
+      imagePath = 'dawn.jpg';
+    } else if (now.hour >= 7 && now.hour < 10) {
+      imagePath = 'latemorning.jpg';
+    } else if (now.hour >= 10 && now.hour < 15) {
+      imagePath = 'noon.jpg';
+    } else if (now.hour >= 15 && now.hour < 17) {
+      imagePath = 'earlyeven.jpg';
+    } else if (now.hour >= 17 && now.hour < 19)  {
+      imagePath = 'lateevening.jpg';
+    }
+
+    return imagePath;
+  }
+
   Future<void> getTime() async {
     try {
       // Simulate Network request for username database
@@ -26,25 +48,7 @@ class WorldTime {
       DateTime now = DateTime.parse(datetime);
       now = now.add(Duration(hours: int.parse(offset)));
       time = DateFormat.jm().format(now); // func from intl package
-
-      print("current hour: ${now.hour}");
-      if (now.hour >= 19 && now.hour < 5) {
-        isDaytime = 'night.jpg';
-      } else if(now.hour >= 0 && now.hour < 5) {
-        isDaytime = 'night.jpg';
-      } else if(now.hour >= 5 && now.hour < 7) {
-        isDaytime = 'dawn.jpg';
-      } else if (now.hour >= 7 && now.hour < 10) {
-        isDaytime = 'latemorning.jpg';
-      } else if (now.hour >= 10 && now.hour < 15) {
-        isDaytime = 'noon.jpg';
-      } else if (now.hour >= 15 && now.hour < 17) {
-        isDaytime = 'earlyevening.jpg';
-      } else if (now.hour >= 17 && now.hour < 19)  {
-        isDaytime = 'lateevening.jpg';
-      }
-
-      print('Final Date time: $isDaytime');
+      isDaytime = getCurrentImage(now);
     }
     catch(e) {
       print('caught error: $e');
