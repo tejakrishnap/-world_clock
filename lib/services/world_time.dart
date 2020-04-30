@@ -16,19 +16,19 @@ class WorldTime {
     String imagePath = '';
 
     if (now.hour >= 19 && now.hour <= 24) {
-      imagePath = 'night.jpg';
+      imagePath = 'night-min.jpg';
     } else if(now.hour >= 0 && now.hour < 5) {
-      imagePath = 'night.jpg';
+      imagePath = 'night-min.jpg';
     } else if(now.hour >= 5 && now.hour < 7) {
-      imagePath = 'dawn.jpg';
+      imagePath = 'dawn-min.jpg';
     } else if (now.hour >= 7 && now.hour < 10) {
-      imagePath = 'latemorning.jpg';
+      imagePath = 'latemorning-min.jpg';
     } else if (now.hour >= 10 && now.hour < 15) {
-      imagePath = 'noon.jpg';
+      imagePath = 'noon-min.jpg';
     } else if (now.hour >= 15 && now.hour < 17) {
-      imagePath = 'earlyeven.jpg';
+      imagePath = 'earlyeven-min.jpg';
     } else if (now.hour >= 17 && now.hour < 19)  {
-      imagePath = 'lateevening.jpg';
+      imagePath = 'lateevening-min.jpg';
     }
 
     return imagePath;
@@ -42,12 +42,17 @@ class WorldTime {
 
       // get properties from data
       String datetime = data['datetime'];
-      String offset = data['utc_offset'].substring(1, 3);
+      String offset = data['utc_offset'].substring(0, 3);
+
+      print(datetime);
+      print(offset);
 
       // create a datetime obj
       DateTime now = DateTime.parse(datetime);
       now = now.add(Duration(hours: int.parse(offset)));
+      print('now $now');
       time = DateFormat.jm().format(now); // func from intl package
+      print(time);
       isDaytime = getCurrentImage(now);
     }
     catch(e) {
