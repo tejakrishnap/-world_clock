@@ -44,15 +44,10 @@ class WorldTime {
       String datetime = data['datetime'];
       String offset = data['utc_offset'].substring(0, 3);
 
-      print(datetime);
-      print(offset);
-
       // create a datetime obj
       DateTime now = DateTime.parse(datetime);
       now = now.add(Duration(hours: int.parse(offset)));
-      print('now $now');
       time = DateFormat.jm().format(now); // func from intl package
-      print(time);
       isDaytime = getCurrentImage(now);
     }
     catch(e) {
