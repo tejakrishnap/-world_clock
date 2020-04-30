@@ -2,6 +2,10 @@
 
 App that shows time based on the selected list.
 
+# Screen Shot
+
+![World Clock](./assets/ss.png?raw=true "World Clock")
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
