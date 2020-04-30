@@ -1,6 +1,6 @@
 # worldclock
 
-App that shows time based on the selected list.
+This App displays time based on the country selection from  the list.
 
 # Screen Shot
 
